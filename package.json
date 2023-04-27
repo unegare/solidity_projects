@@ -14,9 +14,11 @@
     "@openzeppelin/contracts": "^4.8.3",
     "bluebird": "^3.7.2",
     "dotenv": "^16.0.3",
+    "eth-permit": "^0.2.3",
     "eth-sig-util": "^3.0.1",
-    "hardhat": "^2.13.1",
-    "jsondiffpatch": "^0.4.1"
+    "hardhat": "^2.14.0",
+    "jsondiffpatch": "^0.4.1",
+    "keccak256": "^1.0.6"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2"
