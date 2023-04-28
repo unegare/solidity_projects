@@ -36,6 +36,8 @@ const USDC_OWNER = '0x47ac0Fb4F2D84898e4D9E7b4DaB3C24507a6D503'; // '0xA0b86991c
 
 const AAVE_POOL = '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2';
 
+const USDC_DOMAIN_SEPARATOR = '0x06c37168a7db5138defc7866392bb87a741f9b3d104deb5094588ce041cae335';
+
 describe("AaveWrap", function () {
   const get_erc20 = async (addr, signer) => {
     const erc20 = await ethers.getContractAt(IERC20_SOURCE, addr, signer);
@@ -52,6 +54,60 @@ describe("AaveWrap", function () {
   const get_variableDebtToken = async (addr, signer) => {
     const vbt = await ethers.getContractAt(AAVE_VARIABLE_DEBT_TOKEN, addr, signer);
     return vbt.connect(signer);
+  };
+  const get_ERC20BalanceFromOwner = async (erc20token, erc20owner, erc20target, amount) => {
+//    const [owner] = await ethers.getSigners();
+    const token_owner = await ethers.getSigner(erc20owner);
+    const token = await get_erc20(erc20token, token_owner);
+    const tx = await token.transfer(erc20target, amount); //await usdc.transfer(owner.address, amount);
+    await tx.wait();
+//    return owner;
+  };
+  const get_ERC20tokens = async (signer) => {
+    const wbtc = await get_erc20(WBTC, signer);
+    const usdt = await get_erc20(USDT, signer);
+    const usdc = await get_erc20(USDC, signer);
+    const usdc_2612 = await get_erc2612(USDC, signer);
+
+    const get_balances = async () => {
+      const wbtc_balance = await wbtc.balanceOf(signer.address);
+      const usdt_balance = await usdt.balanceOf(signer.address);
+      const usdc_balance = await usdc.balanceOf(signer.address);
+      return {wbtc_balance, usdt_balance, usdc_balance};
+    };
+    return {wbtc, usdt, usdc, usdc_2612, get_balances};
+  };
+  const get_2612permitSignature = async (sigUtils, _2612_permit_params, signer_secretKey) => {
+    const _2612_permit_hash_to_sign = await sigUtils.getTypedDataHash(_2612_permit_params);
+    console.log({_2612_permit_hash_to_sign});
+    const _2612_permit_raw_signature_obj = secp256k1.ecdsaSign(
+      new Uint8Array(Buffer.from(_2612_permit_hash_to_sign.substring(2, 66), 'hex')),
+      new Uint8Array(Buffer.from(signer_secretKey.substring(2, 66), 'hex')),
+    );
+    const _2612_permit_signature = Buffer.concat([_2612_permit_raw_signature_obj.signature, Buffer.from([_2612_permit_raw_signature_obj.recid])]);
+    const permit_signature_vrs = fromRpcSig(_2612_permit_signature);
+    return permit_signature_vrs;
+  };
+  const get_VariableDebtTokenPermitSignature = async (variableDebtToken, signer_secretKey, delegatee, permitAmount) => {
+    const chainId = hre.network.config.chainId || HARDHAT_CHAINID;
+    const EIP712_REVISION = '1';
+//    const delegatee = aaveWrap.address;
+    const nonce = (await variableDebtToken.nonces((new ethers.Wallet(signer_secretKey)).address)).toNumber();
+    const expiration = MAX_UINT_AMOUNT;
+//    const permitAmount = borrow_amount;
+    const msgParams = buildDelegationWithSigParams(
+      chainId,
+      variableDebtToken.address,
+      EIP712_REVISION,
+      await variableDebtToken.name(),
+      delegatee,
+      nonce,
+      expiration,
+      permitAmount.toString()
+    );
+
+    const delegate_signature = getSignatureFromTypedData(signer_secretKey, msgParams);
+    return delegate_signature;
   };
 
   it('aave_general', async function () {
@@ -270,32 +326,17 @@ describe("AaveWrap", function () {
     });
 
     const lend_amount = ethers.BigNumber.from(1_000_000).mul(ethers.BigNumber.from(10_000));
-    const borrow_amount = ethers.BigNumber.from(100_000_000).mul(ethers.BigNumber.from(1));
+    const borrow_amount = ethers.BigNumber.from(1_000_000).mul(ethers.BigNumber.from(1_000));
 
-    const signer = await (async () => {
-      const [owner] = await ethers.getSigners();
-      const usdc_owner = await ethers.getSigner(USDC_OWNER);
-      const usdc = await get_erc20(USDC, usdc_owner);
-      const tx = await usdc.transfer(owner.address, lend_amount.mul(ethers.BigNumber.from(10)));
-      await tx.wait();
-      return owner;
-    })();
+    const [signer] = await ethers.getSigners();
+    await get_ERC20BalanceFromOwner(USDC, USDC_OWNER, signer.address, lend_amount.mul(ethers.BigNumber.from(10)));
+
     const signer_secretKey = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'; // zero hardhat acc
     const AaveWrap = await ethers.getContractFactory("AaveWrap");
     const aaveWrap = await AaveWrap.deploy();
     console.log('aaveWrap.address:', aaveWrap.address);
 
-    const wbtc = await get_erc20(WBTC, signer);
-    const usdt = await get_erc20(USDT, signer);
-    const usdc = await get_erc20(USDC, signer);
-    const usdc_2612 = await get_erc2612(USDC, signer);
-
-    const get_balances = async () => {
-      const wbtc_balance = await wbtc.balanceOf(signer.address);
-      const usdt_balance = await usdt.balanceOf(signer.address);
-      const usdc_balance = await usdc.balanceOf(signer.address);
-      return {wbtc_balance, usdt_balance, usdc_balance};
-    };
+    const {wbtc, usdt, usdc, usdc_2612, get_balances} = await get_ERC20tokens(signer);
     
     console.log('signer.address: ', signer.address);
 
@@ -313,15 +354,15 @@ describe("AaveWrap", function () {
       (await aave_pool.getReserveData(USDT)).variableDebtTokenAddress,
       signer
     );
-    const variableDebtWBTC = await get_variableDebtToken(
-      (await aave_pool.getReserveData(WBTC)).variableDebtTokenAddress,
-      signer
-    );
+//    const variableDebtWBTC = await get_variableDebtToken(
+//      (await aave_pool.getReserveData(WBTC)).variableDebtTokenAddress,
+//      signer
+//    );
 
     const usdc_2612_nonce = await usdc_2612.nonces(signer.address);
 
     const SigUtils = await ethers.getContractFactory('SigUtils');
-    const sigUtils = await SigUtils.deploy(Buffer.from('0x06c37168a7db5138defc7866392bb87a741f9b3d104deb5094588ce041cae335'.substring(2, 66), 'hex')); // USDC
+    const sigUtils = await SigUtils.deploy(Buffer.from(USDC_DOMAIN_SEPARATOR.substring(2, 66), 'hex')); // USDC
 
     console.log(lend_amount);
 
@@ -332,38 +373,10 @@ describe("AaveWrap", function () {
       nonce: await usdc_2612.nonces(signer.address),
       deadline: ethers.BigNumber.from(((1n<<256n)-1n).toString()),
     };
-    const usdc_permit_hash_to_sign = await sigUtils.getTypedDataHash(usdc_permit_params);
-    console.log({usdc_permit_hash_to_sign});
-    const usdc_permit_raw_signature = secp256k1.ecdsaSign(
-      new Uint8Array(Buffer.from(usdc_permit_hash_to_sign.substring(2, 66), 'hex')),
-      new Uint8Array(Buffer.from(signer_secretKey.substring(2, 66), 'hex')),
-    );
-    const usdc_permit_signature = Buffer.concat([usdc_permit_raw_signature.signature, Buffer.from([usdc_permit_raw_signature.recid])]);
-    const permit_signature = fromRpcSig(usdc_permit_signature);
+    const permit_signature = await get_2612permitSignature(sigUtils, usdc_permit_params, signer_secretKey);
 
-
-    const chainId = hre.network.config.chainId || HARDHAT_CHAINID;
-    const EIP712_REVISION = '1';
-    const delegatee = aaveWrap.address;
-    const nonce = (await variableDebtUSDT.nonces(signer.address)).toNumber();
-    const expiration = MAX_UINT_AMOUNT;
-    const permitAmount = borrow_amount;
-    const msgParams = buildDelegationWithSigParams(
-      chainId,
-      variableDebtUSDT.address,
-      EIP712_REVISION,
-      await variableDebtUSDT.name(),
-      delegatee,
-      nonce,
-      expiration,
-      permitAmount.toString()
-    );
-
-    const delegate_signature = getSignatureFromTypedData(signer_secretKey, msgParams);
-
-//    await variableDebtUSDT.delegationWithSig(signer.address, aaveWrap.address, permitAmount, expiration, v, r, s);
-//    console.log('approveDelegation:', await variableDebtUSDT.approveDelegation(aaveWrap.address, borrow_amount));
-
+    const delegate_signature = await get_VariableDebtTokenPermitSignature(variableDebtUSDT, signer_secretKey, aaveWrap.address, borrow_amount);
+    
     console.log('getCreditWithSigs:', await aaveWrap.connect(signer).getCreditWithSigs({
       base: {
         lend_token: USDC,
@@ -448,7 +461,6 @@ describe("AaveWrap", function () {
 
     const usdc = await get_erc20(USDC, usdc_owner);
     const usdc_2612 = await get_erc2612(USDC, usdc_owner);
-    const USDC_DOMAIN_SEPARATOR = '0x06c37168a7db5138defc7866392bb87a741f9b3d104deb5094588ce041cae335';
 
     const lend_amount = ethers.BigNumber.from(1_000_000).mul(ethers.BigNumber.from(100_000));
 
@@ -493,6 +505,109 @@ describe("AaveWrap", function () {
 
     console.log('allowance after:', await usdc.allowance(signer.address, usdc_owner.address));
     console.log('success');
+
+    await hre.network.provider.request({
+      method: "hardhat_stopImpersonatingAccount",
+      params: [USDC_OWNER],
+    });
+  });
+  it('getCreditWithSigsAndV3Swap', async function() {
+    await hre.network.provider.request({
+      method: "hardhat_impersonateAccount",
+      params: [USDC_OWNER],
+    });
+
+    const lend_amount = ethers.BigNumber.from(1_000_000).mul(ethers.BigNumber.from(60_000));
+    const borrow_amount = ethers.BigNumber.from(1_000_000).mul(ethers.BigNumber.from(30_000));
+
+    const [signer] = await ethers.getSigners();
+    await get_ERC20BalanceFromOwner(USDC, USDC_OWNER, signer.address, lend_amount.mul(ethers.BigNumber.from(10)));
+
+    const signer_secretKey = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'; // zero hardhat acc
+    const AaveWrap = await ethers.getContractFactory("AaveWrap");
+    const aaveWrap = await AaveWrap.deploy();
+    console.log('aaveWrap.address:', aaveWrap.address);
+
+    const {wbtc, usdt, usdc, usdc_2612, get_balances} = await get_ERC20tokens(signer);
+
+    console.log('signer.address: ', signer.address);
+
+    const {
+      wbtc_balance: wbtc_balance_old,
+      usdt_balance: usdt_balance_old,
+      usdc_balance: usdc_balance_old,
+    } = await get_balances();
+    console.log('wbtc balance: ', wbtc_balance_old);
+    console.log('usdt balance: ', usdt_balance_old);
+    console.log('usdc balance: ', usdc_balance_old);
+
+    const aave_pool = await get_aave_pool(AAVE_POOL, signer);
+    const variableDebtUSDT = await get_variableDebtToken(
+      (await aave_pool.getReserveData(USDT)).variableDebtTokenAddress,
+      signer
+    );
+
+    const usdc_2612_nonce = await usdc_2612.nonces(signer.address);
+
+    const SigUtils = await ethers.getContractFactory('SigUtils');
+    const sigUtils = await SigUtils.deploy(Buffer.from(USDC_DOMAIN_SEPARATOR.substring(2, 66), 'hex')); // USDC
+
+    console.log(lend_amount);
+
+    const usdc_permit_params = {
+      owner: signer.address,
+      spender: aaveWrap.address,
+      value: lend_amount,
+      nonce: await usdc_2612.nonces(signer.address),
+      deadline: ethers.BigNumber.from(((1n<<256n)-1n).toString()),
+    };
+    const permit_signature = await get_2612permitSignature(sigUtils, usdc_permit_params, signer_secretKey);
+
+    const delegate_signature = await get_VariableDebtTokenPermitSignature(variableDebtUSDT, signer_secretKey, aaveWrap.address, borrow_amount);
+
+    const SimpleRouter = await ethers.getContractFactory('SimpleRouter');
+    const simpleRouter = await SimpleRouter.deploy();
+
+    
+    console.log('getCreditWithSigsAndV3Swap:', await aaveWrap.connect(signer).getCreditWithSigsAndV3Swap(
+      {
+        base: {
+          lend_token: USDC,
+          lend_amount, 
+          borrow_token: USDT,
+          borrow_amount,
+        },
+        lend_approve: {
+          v: permit_signature.v,
+          r: permit_signature.r,
+          s: permit_signature.s,
+        },
+        borrow_delegation: {
+          v: delegate_signature.v,
+          r: delegate_signature.r,
+          s: delegate_signature.s,
+        },
+      },
+      simpleRouter.address,
+      {
+        pool: WBTCUSDT,
+        from: USDT,
+        to: WBTC,
+        deadline: MAX_UINT_AMOUNT, //ethers.BigNumber.from(await time.latest()).add(ethers.BigNumber.from(1_000_000_000_000)),
+        amount_from: borrow_amount, //ethers.BigNumber.from(100_000_000).mul(ethers.BigNumber.from(1)),
+        amount_to: ethers.BigNumber.from(0),
+        sqrtPriceLimitX96: ethers.BigNumber.from(0),
+      }
+    ));
+
+    const {
+      wbtc_balance: wbtc_balance_new,
+      usdt_balance: usdt_balance_new,
+      usdc_balance: usdc_balance_new,
+    } = await get_balances();
+    console.log('wbtc balance: ', wbtc_balance_new);
+    console.log('usdt balance: ', usdt_balance_new);
+    console.log('usdc balance: ', usdc_balance_new);
 
     await hre.network.provider.request({
       method: "hardhat_stopImpersonatingAccount",

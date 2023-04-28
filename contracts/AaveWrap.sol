@@ -1,13 +1,15 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.10;
 
-import "hardhat/console.sol";
+//import "hardhat/console.sol";
 //import "../openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import "../openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import "../openzeppelin-contracts/contracts/interfaces/IERC2612.sol";
 import '../openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol';
 import "../aave-v3-core/contracts/protocol/pool/Pool.sol";
 import {VariableDebtToken} from "../aave-v3-core/contracts/protocol/tokenization/VariableDebtToken.sol";
+
+import "./SimpleRouter.sol";
 
 contract AaveWrap {
   using SafeERC20 for IERC20;
@@ -80,16 +82,16 @@ contract AaveWrap {
   }
 
   function getCreditWithSigs(GetCreditWithSigsParams calldata params) external {
-    console.log('balanceOf:  ', params.base.lend_token.balanceOf(msg.sender));
-    console.log('lend_amount:', params.base.lend_amount);
-    console.log('allowance:', params.base.lend_token.allowance(msg.sender, address(this)));
-    console.log('nonces:', IERC2612(address(params.base.lend_token)).nonces(msg.sender));
+//    console.log('balanceOf:  ', params.base.lend_token.balanceOf(msg.sender));
+//    console.log('lend_amount:', params.base.lend_amount);
+//    console.log('allowance:', params.base.lend_token.allowance(msg.sender, address(this)));
+//    console.log('nonces:', IERC2612(address(params.base.lend_token)).nonces(msg.sender));
 //    console.log('version:', IERC2612(address(params.base.lend_token)).version());
     IERC2612(address(params.base.lend_token)).permit(
       msg.sender, address(this), params.base.lend_amount, uint(int(-1)),
       params.lend_approve.v, params.lend_approve.r, params.lend_approve.s
     );
-    console.log('allowance:', params.base.lend_token.allowance(msg.sender, address(this)));
+//    console.log('allowance:', params.base.lend_token.allowance(msg.sender, address(this)));
 
     params.base.lend_token.safeTransferFrom(msg.sender, address(this), params.base.lend_amount);
     params.base.lend_token.safeApprove(address(aavePool), params.base.lend_amount);
@@ -103,5 +105,30 @@ contract AaveWrap {
 
     aavePool.borrow(address(params.base.borrow_token), params.base.borrow_amount, 2, 0, msg.sender);
     params.base.borrow_token.safeTransfer(msg.sender, params.base.borrow_amount);
+  }
+
+  function getCreditWithSigsAndV3Swap(GetCreditWithSigsParams calldata creditParams, address simpleRouter, SimpleRouter.V3SwapParams calldata v3swapParams) external {
+    IERC2612(address(creditParams.base.lend_token)).permit(
+      msg.sender, address(this), creditParams.base.lend_amount, uint(int(-1)),
+      creditParams.lend_approve.v, creditParams.lend_approve.r, creditParams.lend_approve.s
+    );
+
+    creditParams.base.lend_token.safeTransferFrom(msg.sender, address(this), creditParams.base.lend_amount);
+    creditParams.base.lend_token.safeApprove(address(aavePool), creditParams.base.lend_amount);
+    aavePool.supply(address(creditParams.base.lend_token), creditParams.base.lend_amount, msg.sender, 0);
+
+    address vbta = aavePool.getReserveData(address(creditParams.base.borrow_token)).variableDebtTokenAddress;
+    VariableDebtToken(vbta).delegationWithSig(
+      msg.sender, address(this), creditParams.base.borrow_amount, uint(int(-1)),
+      creditParams.borrow_delegation.v, creditParams.borrow_delegation.r, creditParams.borrow_delegation.s
+    );
+
+    aavePool.borrow(address(creditParams.base.borrow_token), creditParams.base.borrow_amount, 2, 0, msg.sender);
+//    creditParams.base.borrow_token.safeTransfer(msg.sender, creditParams.base.borrow_amount);
+    creditParams.base.borrow_token.safeApprove(simpleRouter, v3swapParams.amount_from);
+    
+    uint256 amountOut = SimpleRouter(simpleRouter).v3swap(v3swapParams);
+
+    v3swapParams.to.safeTransfer(msg.sender, amountOut);
   }
 }

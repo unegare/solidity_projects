@@ -12,6 +12,7 @@
   "dependencies": {
     "@aave/deploy-v3": "^1.55.3",
     "@openzeppelin/contracts": "^4.8.3",
+    "@uniswap/v2-core": "^1.0.1",
     "@uniswap/v3-core": "^1.0.1",
     "bluebird": "^3.7.2",
     "dotenv": "^16.0.3",
