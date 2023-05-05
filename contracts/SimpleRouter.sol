@@ -52,18 +52,18 @@ contract SimpleRouter is IUniswapV3SwapCallback{
     uint deadline;
   }
 
-  function v2swapInDirectOrder(V2SwapParams calldata params) external checkDeadline(params.deadline) {
+  function v2swapInDirectOrder(V2SwapParams calldata params) external checkDeadline(params.deadline) returns (uint amount_out) {
     (uint112 reserve0, uint112 reserve1, uint32 _b) = params.pool.getReserves();
-    uint amount_out = v2getAmountOut(params.amount_from, reserve0, reserve1);
+    amount_out = v2getAmountOut(params.amount_from, reserve0, reserve1);
     require(amount_out >= params.amount_to, 'SO'); // slippage overrun
 
     params.from.safeTransferFrom(msg.sender, address(params.pool), params.amount_from);
     params.pool.swap(0, amount_out, msg.sender, new bytes(0));
   }
 
-  function v2swapInRevertedOrder(V2SwapParams calldata params) external checkDeadline(params.deadline) {
+  function v2swapInRevertedOrder(V2SwapParams calldata params) external checkDeadline(params.deadline) returns (uint amount_out) {
     (uint112 reserve0, uint112 reserve1, uint32 _b) = params.pool.getReserves();
-    uint amount_out = v2getAmountOut(params.amount_from, reserve1, reserve0);
+    amount_out = v2getAmountOut(params.amount_from, reserve1, reserve0);
     require(amount_out >= params.amount_to, 'SO'); // slippage overrun
 
     params.from.safeTransferFrom(msg.sender, address(params.pool), params.amount_from);

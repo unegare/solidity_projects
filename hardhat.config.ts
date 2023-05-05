@@ -9,11 +9,11 @@ const config: HardhatUserConfig = {
       {version:"0.6.12"},
     ]
   },
-  networkds: {
-    hardhat: {
-      chainId: 1
-    },
-  },
+//  networks: {
+//    hardhat: {
+//      chainId: 1
+//    },
+//  },
 };
 
 export default config;

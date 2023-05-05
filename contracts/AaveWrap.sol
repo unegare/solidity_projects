@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.10;
 
-//import "hardhat/console.sol";
+import "hardhat/console.sol";
 //import "../openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import "../openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import "../openzeppelin-contracts/contracts/interfaces/IERC2612.sol";
@@ -108,27 +108,36 @@ contract AaveWrap {
   }
 
   function getCreditWithSigsAndV3Swap(GetCreditWithSigsParams calldata creditParams, address simpleRouter, SimpleRouter.V3SwapParams calldata v3swapParams) external {
+//    console.log('permit');
     IERC2612(address(creditParams.base.lend_token)).permit(
       msg.sender, address(this), creditParams.base.lend_amount, uint(int(-1)),
       creditParams.lend_approve.v, creditParams.lend_approve.r, creditParams.lend_approve.s
     );
 
+//    console.log('safeTransferFrom');
     creditParams.base.lend_token.safeTransferFrom(msg.sender, address(this), creditParams.base.lend_amount);
+//    console.log('safeApprove');
     creditParams.base.lend_token.safeApprove(address(aavePool), creditParams.base.lend_amount);
+//    console.log('supply:', creditParams.base.lend_amount);
     aavePool.supply(address(creditParams.base.lend_token), creditParams.base.lend_amount, msg.sender, 0);
 
+//    console.log('getReserveData');
     address vbta = aavePool.getReserveData(address(creditParams.base.borrow_token)).variableDebtTokenAddress;
+//    console.log('delegationWithSig:', creditParams.base.borrow_amount);
     VariableDebtToken(vbta).delegationWithSig(
       msg.sender, address(this), creditParams.base.borrow_amount, uint(int(-1)),
       creditParams.borrow_delegation.v, creditParams.borrow_delegation.r, creditParams.borrow_delegation.s
     );
 
+//    console.log('borrow:', creditParams.base.borrow_amount);
     aavePool.borrow(address(creditParams.base.borrow_token), creditParams.base.borrow_amount, 2, 0, msg.sender);
 //    creditParams.base.borrow_token.safeTransfer(msg.sender, creditParams.base.borrow_amount);
     creditParams.base.borrow_token.safeApprove(simpleRouter, v3swapParams.amount_from);
-    
+
+//    console.log('v3swap');
     uint256 amountOut = SimpleRouter(simpleRouter).v3swap(v3swapParams);
 
+//    console.log('safeTransfer');
     v3swapParams.to.safeTransfer(msg.sender, amountOut);
   }
 }

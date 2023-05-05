@@ -22,15 +22,24 @@ contract SigUtils {
     }
 
     // computes the hash of a permit
-    function getStructHash(Permit memory _permit) internal pure returns (bytes32) {
-        return keccak256(
-            abi.encode(PERMIT_TYPEHASH, _permit.owner, _permit.spender, _permit.value, _permit.nonce, _permit.deadline)
-        );
+    function getStructHash(Permit memory _permit) internal view returns (bytes32) {
+        bytes memory data = abi.encode(PERMIT_TYPEHASH, _permit.owner, _permit.spender, _permit.value, _permit.nonce, _permit.deadline);
+        console.logBytes(data);
+        bytes32 hash = keccak256(data);
+        console.logBytes32(hash);
+        return hash;
+//        return keccak256(
+//            abi.encode(PERMIT_TYPEHASH, _permit.owner, _permit.spender, _permit.value, _permit.nonce, _permit.deadline)
+//        );
     }
 
     // computes the hash of the fully encoded EIP-712 message for the domain, which can be used to recover the signer
     function getTypedDataHash(Permit memory _permit) public view returns (bytes32) {
-        return keccak256(abi.encodePacked("\x19\x01", DOMAIN_SEPARATOR, getStructHash(_permit)));
+        bytes memory data = abi.encodePacked("\x19\x01", DOMAIN_SEPARATOR, getStructHash(_permit));
+        console.logBytes(data);
+        bytes32 hash = keccak256(data);
+        console.logBytes32(hash);
+        return hash;
     }
 
     function getDaiDigest(address holder, address spender, uint256 nonce, uint256 expiry, bool allowed) view public returns (bytes32 digest)
@@ -51,6 +60,32 @@ contract SigUtils {
         console.logBytes(message);
 
         digest = keccak256(message);
+    }
+
+    function get_VariableDebtToken_delegationWithSig(bytes32 _DOMAIN_SEPARATOR, bytes32 DELEGATION_WITH_SIG_TYPEHASH, address delegatee, uint256 value, uint256 currentValidNonce, uint256 deadline) view external returns(bytes32) {
+      bytes memory data = abi.encode(DELEGATION_WITH_SIG_TYPEHASH, delegatee, value, currentValidNonce, deadline);
+      console.logBytes(data);
+      bytes32 hash = keccak256(data);
+      console.logBytes32(hash);
+      bytes memory data2 = abi.encodePacked(
+          '\x19\x01',
+          _DOMAIN_SEPARATOR,
+          hash
+      );
+      console.logBytes(data2);
+      bytes32 hash2 = keccak256(data2);
+      console.logBytes32(hash2);
+      return hash2;
+//      bytes32 digest = keccak256(
+//        abi.encodePacked(
+//          '\x19\x01',
+//          _DOMAIN_SEPARATOR,
+//          keccak256(
+//            abi.encode(DELEGATION_WITH_SIG_TYPEHASH, delegatee, value, currentValidNonce, deadline)
+//          )
+//        )
+//      );
+//      return digest;
     }
 }
 

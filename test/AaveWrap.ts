@@ -89,7 +89,9 @@ describe("AaveWrap", function () {
     return permit_signature_vrs;
   };
   const get_VariableDebtTokenPermitSignature = async (variableDebtToken, signer_secretKey, delegatee, permitAmount) => {
-    const chainId = hre.network.config.chainId || HARDHAT_CHAINID;
+    const chainId = hre.network.config.chainId || HARDHAT_CHAINID; // IS NOT SYNCED
+//    const chainId = (await ethers.getDefaultProvider().getNetwork()).chainId; // always 1 => IS NOT SYNCED EITHER
+    console.log({chainId});
     const EIP712_REVISION = '1';
 //    const delegatee = aaveWrap.address;
     const nonce = (await variableDebtToken.nonces((new ethers.Wallet(signer_secretKey)).address)).toNumber();
@@ -376,6 +378,19 @@ describe("AaveWrap", function () {
     const permit_signature = await get_2612permitSignature(sigUtils, usdc_permit_params, signer_secretKey);
 
     const delegate_signature = await get_VariableDebtTokenPermitSignature(variableDebtUSDT, signer_secretKey, aaveWrap.address, borrow_amount);
+
+    console.log({
+      lend_approve: {
+        v: permit_signature.v,
+        r: permit_signature.r,
+        s: permit_signature.s,
+      },
+      borrow_delegation: {
+        v: delegate_signature.v,
+        r: delegate_signature.r,
+        s: delegate_signature.s,
+      },
+    });
     
     console.log('getCreditWithSigs:', await aaveWrap.connect(signer).getCreditWithSigs({
       base: {
@@ -526,6 +541,7 @@ describe("AaveWrap", function () {
     const signer_secretKey = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'; // zero hardhat acc
     const AaveWrap = await ethers.getContractFactory("AaveWrap");
     const aaveWrap = await AaveWrap.deploy();
+//    const aaveWrap = await AaveWrap.attach('0x0c03eCB91Cb50835e560a7D52190EB1a5ffba797');
     console.log('aaveWrap.address:', aaveWrap.address);
 
     const {wbtc, usdt, usdc, usdc_2612, get_balances} = await get_ERC20tokens(signer);
@@ -562,14 +578,26 @@ describe("AaveWrap", function () {
       deadline: ethers.BigNumber.from(((1n<<256n)-1n).toString()),
     };
     const permit_signature = await get_2612permitSignature(sigUtils, usdc_permit_params, signer_secretKey);
+    console.log({permit_signature});
 
     const delegate_signature = await get_VariableDebtTokenPermitSignature(variableDebtUSDT, signer_secretKey, aaveWrap.address, borrow_amount);
 
     const SimpleRouter = await ethers.getContractFactory('SimpleRouter');
     const simpleRouter = await SimpleRouter.deploy();
+//    const simpleRouter = await SimpleRouter.attach('0xb04cb6c52e73cf3e2753776030ce85a36549c9c2');
 
     
-    console.log('getCreditWithSigsAndV3Swap:', await aaveWrap.connect(signer).getCreditWithSigsAndV3Swap(
+    await sigUtils.get_VariableDebtToken_delegationWithSig(
+      await variableDebtUSDT.DOMAIN_SEPARATOR(),
+      await variableDebtUSDT.DELEGATION_WITH_SIG_TYPEHASH(),
+      aaveWrap.address,
+      borrow_amount,
+      await variableDebtUSDT.nonces(signer.address),
+      MAX_UINT_AMOUNT
+    );
+    
+
+    const params_to_encode = [
       {
         base: {
           lend_token: USDC,
@@ -598,7 +626,10 @@ describe("AaveWrap", function () {
         amount_to: ethers.BigNumber.from(0),
         sqrtPriceLimitX96: ethers.BigNumber.from(0),
       }
-    ));
+    ];
+
+    console.log('calldata:', aaveWrap.connect(signer).interface.encodeFunctionData('getCreditWithSigsAndV3Swap', params_to_encode));
+    console.log('getCreditWithSigsAndV3Swap:', await aaveWrap.connect(signer).getCreditWithSigsAndV3Swap.apply(aaveWrap.connect(signer), params_to_encode));
 
     const {
       wbtc_balance: wbtc_balance_new,
