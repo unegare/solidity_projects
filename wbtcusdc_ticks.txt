@@ -1,0 +1,1193 @@
+  tick: 32820 | 2 | 35
+    liquidityGross: 5939618483
+    liquidityNet:
+    5939618483
+    
+  tick: 35100 | 2 | 73
+    liquidityGross: 5646908
+    liquidityNet:
+    5646908
+    
+  tick: 35580 | 2 | 81
+    liquidityGross: 4604634628
+    liquidityNet:
+    4604634628
+    
+  tick: 39240 | 2 | 142
+    liquidityGross: 12036627
+    liquidityNet:
+    12036627
+    
+  tick: 40440 | 2 | 162
+    liquidityGross: 581256768
+    liquidityNet:
+    581256768
+    
+  tick: 43860 | 2 | 219
+    liquidityGross: 19247883999
+    liquidityNet:
+    19247883999
+    
+  tick: 43980 | 2 | 221
+    liquidityGross: 880086
+    liquidityNet:
+    880086
+    
+  tick: 44100 | 2 | 223
+    liquidityGross: 545845
+    liquidityNet:
+    545845
+    
+  tick: 44160 | 2 | 224
+    liquidityGross: 1326624370
+    liquidityNet:
+    1326624370
+    
+  tick: 44220 | 2 | 225
+    liquidityGross: 352632
+    liquidityNet:
+    352632
+    
+  tick: 44280 | 2 | 226
+    liquidityGross: 169694
+    liquidityNet:
+    169694
+    
+  tick: 44340 | 2 | 227
+    liquidityGross: 5514968123
+    liquidityNet:
+    5514968123
+    
+  tick: 44400 | 2 | 228
+    liquidityGross: 256542
+    liquidityNet:
+    256542
+    
+  tick: 44520 | 2 | 230
+    liquidityGross: 261587
+    liquidityNet:
+    261587
+    
+  tick: 44820 | 2 | 235
+    liquidityGross: 64022933
+    liquidityNet:
+    64022933
+    
+  tick: 44880 | 2 | 236
+    liquidityGross: 373705105
+    liquidityNet:
+    373705105
+    
+  tick: 45300 | 2 | 243
+    liquidityGross: 4075084547
+    liquidityNet:
+    4075084547
+    
+  tick: 45600 | 2 | 248
+    liquidityGross: 2841489736
+    liquidityNet:
+    2841489736
+    
+  tick: 45780 | 2 | 251
+    liquidityGross: 23149235
+    liquidityNet:
+    23149235
+    
+  tick: 45960 | 2 | 254
+    liquidityGross: 53608487
+    liquidityNet:
+    53608487
+    
+  tick: 46020 | 2 | 255
+    liquidityGross: 83214620
+    liquidityNet:
+    83214620
+    
+  tick: 46080 | 3 | 0
+    liquidityGross: 32342636423
+    liquidityNet:
+    32342636423
+    
+  tick: 46440 | 3 | 6
+    liquidityGross: 143393517
+    liquidityNet:
+    143393517
+    
+  tick: 46560 | 3 | 8
+    liquidityGross: 99369
+    liquidityNet:
+    99369
+    
+  tick: 46680 | 3 | 10
+    liquidityGross: 193
+    liquidityNet:
+    193
+    
+  tick: 46860 | 3 | 13
+    liquidityGross: 23753326
+    liquidityNet:
+    23753326
+    
+  tick: 47340 | 3 | 21
+    liquidityGross: 5163
+    liquidityNet:
+    5163
+    
+  tick: 47400 | 3 | 22
+    liquidityGross: 111065266
+    liquidityNet:
+    111065266
+    
+  tick: 47700 | 3 | 27
+    liquidityGross: 2629321194
+    liquidityNet:
+    2629321194
+    
+  tick: 47760 | 3 | 28
+    liquidityGross: 29602704887
+    liquidityNet:
+    29602704887
+    
+  tick: 47820 | 3 | 29
+    liquidityGross: 1920889450
+    liquidityNet:
+    1920889450
+    
+  tick: 47940 | 3 | 31
+    liquidityGross: 1520528765
+    liquidityNet:
+    1520528765
+    
+  tick: 48120 | 3 | 34
+    liquidityGross: 329232835
+    liquidityNet:
+    329232835
+    
+  tick: 48780 | 3 | 45
+    liquidityGross: 1217556719
+    liquidityNet:
+    1217556719
+    
+  tick: 48900 | 3 | 47
+    liquidityGross: 139186348
+    liquidityNet:
+    139186348
+    
+  tick: 48960 | 3 | 48
+    liquidityGross: 9933289954
+    liquidityNet:
+    9933289954
+    
+  tick: 49020 | 3 | 49
+    liquidityGross: 31616080387
+    liquidityNet:
+    31616080387
+    
+  tick: 49080 | 3 | 50
+    liquidityGross: 28303616165
+    liquidityNet:
+    28303616165
+    
+  tick: 49140 | 3 | 51
+    liquidityGross: 319192655
+    liquidityNet:
+    319192655
+    
+  tick: 49200 | 3 | 52
+    liquidityGross: 14850214887
+    liquidityNet:
+    14850214887
+    
+  tick: 49320 | 3 | 54
+    liquidityGross: 283416988
+    liquidityNet:
+    283416988
+    
+  tick: 49440 | 3 | 56
+    liquidityGross: 1424356581
+    liquidityNet:
+    1424356581
+    
+  tick: 49740 | 3 | 61
+    liquidityGross: 5395734345
+    liquidityNet:
+    5395734345
+    
+  tick: 49800 | 3 | 62
+    liquidityGross: 5860958880
+    liquidityNet:
+    5860958880
+    
+  tick: 49920 | 3 | 64
+    liquidityGross: 152673198803
+    liquidityNet:
+    152673198803
+    
+  tick: 50100 | 3 | 67
+    liquidityGross: 1372989205383
+    liquidityNet:
+    1372989205383
+    
+  tick: 50160 | 3 | 68
+    liquidityGross: 1359722287389
+    liquidityNet:
+    -1359192531127
+    
+  tick: 50280 | 3 | 70
+    liquidityGross: 14601348
+    liquidityNet:
+    14601348
+    
+  tick: 50460 | 3 | 73
+    liquidityGross: 2147353223
+    liquidityNet:
+    2147353223
+    
+  tick: 50520 | 3 | 74
+    liquidityGross: 34720718907
+    liquidityNet:
+    34720718907
+    
+  tick: 50700 | 3 | 77
+    liquidityGross: 4388357611
+    liquidityNet:
+    4388357611
+    
+  tick: 50760 | 3 | 78
+    liquidityGross: 48252233255
+    liquidityNet:
+    48252233255
+    
+  tick: 50820 | 3 | 79
+    liquidityGross: 2706000785
+    liquidityNet:
+    2706000785
+    
+  tick: 50940 | 3 | 81
+    liquidityGross: 349784540
+    liquidityNet:
+    349784540
+    
+  tick: 51000 | 3 | 82
+    liquidityGross: 27216184
+    liquidityNet:
+    27216184
+    
+  tick: 51120 | 3 | 84
+    liquidityGross: 284406803102
+    liquidityNet:
+    284406803102
+    
+  tick: 51180 | 3 | 85
+    liquidityGross: 1674610031
+    liquidityNet:
+    1674610031
+    
+  tick: 51240 | 3 | 86
+    liquidityGross: 110864015682
+    liquidityNet:
+    110864015682
+    
+  tick: 51300 | 3 | 87
+    liquidityGross: 47652065978
+    liquidityNet:
+    -47652065978
+    
+  tick: 51360 | 3 | 88
+    liquidityGross: 1403449499488
+    liquidityNet:
+    1403449499488
+    
+  tick: 51420 | 3 | 89
+    liquidityGross: 1276457682748
+    liquidityNet:
+    -1276457682748
+    
+  tick: 51660 | 3 | 93
+    liquidityGross: 34684265392
+    liquidityNet:
+    34684265392
+    
+  tick: 51780 | 3 | 95
+    liquidityGross: 155629036
+    liquidityNet:
+    155629036
+    
+  tick: 51900 | 3 | 97
+    liquidityGross: 3238161536
+    liquidityNet:
+    3238161536
+    
+  tick: 51960 | 3 | 98
+    liquidityGross: 4106349147
+    liquidityNet:
+    4106349147
+    
+  tick: 52020 | 3 | 99
+    liquidityGross: 21821830460
+    liquidityNet:
+    21821830460
+    
+  tick: 52200 | 3 | 102
+    liquidityGross: 61235426020
+    liquidityNet:
+    61235426020
+    
+  tick: 52260 | 3 | 103
+    liquidityGross: 629292977659
+    liquidityNet:
+    629292977659
+    
+  tick: 52380 | 3 | 105
+    liquidityGross: 1138502663
+    liquidityNet:
+    1138502663
+    
+  tick: 52440 | 3 | 106
+    liquidityGross: 13086144644
+    liquidityNet:
+    13086144644
+    
+  tick: 52500 | 3 | 107
+    liquidityGross: 7607984503
+    liquidityNet:
+    7338386925
+    
+  tick: 52560 | 3 | 108
+    liquidityGross: 1138502663
+    liquidityNet:
+    -1138502663
+    
+  tick: 52620 | 3 | 109
+    liquidityGross: 5175012
+    liquidityNet:
+    5175012
+    
+  tick: 52680 | 3 | 110
+    liquidityGross: 22585690274
+    liquidityNet:
+    22585690274
+    
+  tick: 52800 | 3 | 112
+    liquidityGross: 1641440802
+    liquidityNet:
+    1641440802
+    
+  tick: 52920 | 3 | 114
+    liquidityGross: 307576152093
+    liquidityNet:
+    307205107985
+    
+  tick: 52980 | 3 | 115
+    liquidityGross: 18293514437
+    liquidityNet:
+    18293514437
+    
+  tick: 53040 | 3 | 116
+    liquidityGross: 59539856121
+    liquidityNet:
+    59539856121
+    
+  tick: 53100 | 3 | 117
+    liquidityGross: 60798632441
+    liquidityNet:
+    60798632441
+    
+  tick: 53160 | 3 | 118
+    liquidityGross: 3256417098
+    liquidityNet:
+    3256417098
+    
+  tick: 53280 | 3 | 120
+    liquidityGross: 12597263366
+    liquidityNet:
+    12597263366
+    
+  tick: 53340 | 3 | 121
+    liquidityGross: 49996891
+    liquidityNet:
+    49996891
+    
+  tick: 53460 | 3 | 123
+    liquidityGross: 976144844
+    liquidityNet:
+    -976144844
+    
+  tick: 53520 | 3 | 124
+    liquidityGross: 14962794889
+    liquidityNet:
+    14962794889
+    
+  tick: 53580 | 3 | 125
+    liquidityGross: 7312653393
+    liquidityNet:
+    7312653393
+    
+  tick: 53640 | 3 | 126
+    liquidityGross: 5184229187
+    liquidityNet:
+    5184229187
+    
+  tick: 53700 | 3 | 127
+    liquidityGross: 13613386637
+    liquidityNet:
+    13613386637
+    
+  tick: 53760 | 3 | 128
+    liquidityGross: 4289804264
+    liquidityNet:
+    4289804264
+    
+  tick: 53820 | 3 | 129
+    liquidityGross: 918123006
+    liquidityNet:
+    888920310
+    
+  tick: 53940 | 3 | 131
+    liquidityGross: 95179507028
+    liquidityNet:
+    -95179507028
+    
+  tick: 54060 | 3 | 133
+    liquidityGross: 512382245758
+    liquidityNet:
+    512004244290
+    
+  tick: 54120 | 3 | 134
+    liquidityGross: 129746973566
+    liquidityNet:
+    129746973566
+    
+  tick: 54180 | 3 | 135
+    liquidityGross: 59359864
+    liquidityNet:
+    59359864
+    
+  tick: 54300 | 3 | 137
+    liquidityGross: 101144819467
+    liquidityNet:
+    101144819467
+    
+  tick: 54360 | 3 | 138
+    liquidityGross: 2026271510
+    liquidityNet:
+    2026271510
+    
+  tick: 54480 | 3 | 140
+    liquidityGross: 26722882
+    liquidityNet:
+    26722882
+    
+  tick: 54540 | 3 | 141
+    liquidityGross: 10486841525
+    liquidityNet:
+    9799985613
+    
+  tick: 54600 | 3 | 142
+    liquidityGross: 165330236269
+    liquidityNet:
+    -95721492125
+    
+  tick: 54660 | 3 | 143
+    liquidityGross: 1435192
+    liquidityNet:
+    -1435192
+    
+  tick: 54720 | 3 | 144
+    liquidityGross: 33608334822
+    liquidityNet:
+    33608334822
+    
+  tick: 54780 | 3 | 145
+    liquidityGross: 120530216544
+    liquidityNet:
+    120475784176
+    
+  tick: 54840 | 3 | 146
+    liquidityGross: 143729349
+    liquidityNet:
+    143729349
+    
+  tick: 54960 | 3 | 148
+    liquidityGross: 73582273821
+    liquidityNet:
+    73582273821
+    
+  tick: 55020 | 3 | 149
+    liquidityGross: 127834828781
+    liquidityNet:
+    107407189203
+    
+  tick: 55080 | 3 | 150
+    liquidityGross: 139186348
+    liquidityNet:
+    -139186348
+    
+  tick: 55200 | 3 | 152
+    liquidityGross: 584530846188
+    liquidityNet:
+    584530846188
+    
+  tick: 55320 | 3 | 154
+    liquidityGross: 98385271513
+    liquidityNet:
+    98385271513
+    
+  tick: 55500 | 3 | 157
+    liquidityGross: 2842434566
+    liquidityNet:
+    -2842434566
+    
+  tick: 55560 | 3 | 158
+    liquidityGross: 20687666476
+    liquidityNet:
+    3375684460
+    
+  tick: 55620 | 3 | 159
+    liquidityGross: 195997746468
+    liquidityNet:
+    195997746468
+    
+  tick: 55740 | 3 | 161
+    liquidityGross: 333037562778
+    liquidityNet:
+    333037562778
+    
+  tick: 55860 | 3 | 163
+    liquidityGross: 111515773203
+    liquidityNet:
+    111515773203
+    
+  tick: 55920 | 3 | 164
+    liquidityGross: 104173229333
+    liquidityNet:
+    -98116409601
+    
+  tick: 55980 | 3 | 165
+    liquidityGross: 15079736980
+    liquidityNet:
+    -5735147812
+    
+  tick: 56040 | 3 | 166
+    liquidityGross: 2708594869151
+    liquidityNet:
+    2708594869151
+    
+  tick: 56100 | 3 | 167
+    liquidityGross: 143284369762
+    liquidityNet:
+    -101911076014
+    
+  tick: 56220 | 3 | 169
+    liquidityGross: 116569409575
+    liquidityNet:
+    -36086848661
+    
+  tick: 56280 | 3 | 170
+    liquidityGross: 318544356096
+    liquidityNet:
+    -317187429996
+    
+  tick: 56340 | 3 | 171
+    liquidityGross: 33218509663
+    liquidityNet:
+    -23128140291
+    
+  tick: 56400 | 3 | 172
+    liquidityGross: 5869984442
+    liquidityNet:
+    -920180426
+    
+  tick: 56520 | 3 | 174
+    liquidityGross: 84708011775
+    liquidityNet:
+    -84708011775
+    
+  tick: 56580 | 3 | 175
+    liquidityGross: 1054925290491
+    liquidityNet:
+    1054925290491
+    
+  tick: 56700 | 3 | 177
+    liquidityGross: 123682311100
+    liquidityNet:
+    -116803962770
+    
+  tick: 56760 | 3 | 178
+    liquidityGross: 108273932989
+    liquidityNet:
+    108273932989
+    
+  tick: 56880 | 3 | 180
+    liquidityGross: 33608334822
+    liquidityNet:
+    -33608334822
+    
+  tick: 56940 | 3 | 181
+    liquidityGross: 13609790378
+    liquidityNet:
+    -13609790378
+    
+  tick: 57000 | 3 | 182
+    liquidityGross: 132789678898
+    liquidityNet:
+    -132789678898
+    
+  tick: 57060 | 3 | 183
+    liquidityGross: 522087363002
+    liquidityNet:
+    -522087363002
+    
+  tick: 57120 | 3 | 184
+    liquidityGross: 581186170710
+    liquidityNet:
+    -581186170710
+    
+  tick: 57180 | 3 | 185
+    liquidityGross: 255579437476
+    liquidityNet:
+    -255550366028
+    
+  tick: 57240 | 3 | 186
+    liquidityGross: 32912997217
+    liquidityNet:
+    -32912997217
+    
+  tick: 57300 | 3 | 187
+    liquidityGross: 321634747
+    liquidityNet:
+    -321634747
+    
+  tick: 57360 | 3 | 188
+    liquidityGross: 5503311874
+    liquidityNet:
+    -5503311874
+    
+  tick: 57420 | 3 | 189
+    liquidityGross: 9952500606
+    liquidityNet:
+    -9952500606
+    
+  tick: 57480 | 3 | 190
+    liquidityGross: 21809914979
+    liquidityNet:
+    -21809914979
+    
+  tick: 57600 | 3 | 192
+    liquidityGross: 203878768
+    liquidityNet:
+    203878768
+    
+  tick: 57660 | 3 | 193
+    liquidityGross: 17026485328
+    liquidityNet:
+    -17026485328
+    
+  tick: 57720 | 3 | 194
+    liquidityGross: 490229629
+    liquidityNet:
+    -357353097
+    
+  tick: 57780 | 3 | 195
+    liquidityGross: 3220292990
+    liquidityNet:
+    -3220292990
+    
+  tick: 57840 | 3 | 196
+    liquidityGross: 2191663027
+    liquidityNet:
+    -2191663027
+    
+  tick: 57900 | 3 | 197
+    liquidityGross: 54764172810
+    liquidityNet:
+    -54764172810
+    
+  tick: 57960 | 3 | 198
+    liquidityGross: 1641733904
+    liquidityNet:
+    -1641733904
+    
+  tick: 58020 | 3 | 199
+    liquidityGross: 592890472164
+    liquidityNet:
+    -564032101670
+    
+  tick: 58080 | 3 | 200
+    liquidityGross: 41047328019
+    liquidityNet:
+    -12831997587
+    
+  tick: 58140 | 3 | 201
+    liquidityGross: 20414099492
+    liquidityNet:
+    14891019734
+    
+  tick: 58200 | 3 | 202
+    liquidityGross: 8410407376
+    liquidityNet:
+    -8410407376
+    
+  tick: 58260 | 3 | 203
+    liquidityGross: 113115567376
+    liquidityNet:
+    -113115567376
+    
+  tick: 58320 | 3 | 204
+    liquidityGross: 4785192111
+    liquidityNet:
+    3221156875
+    
+  tick: 58380 | 3 | 205
+    liquidityGross: 294550478258
+    liquidityNet:
+    -294550478258
+    
+  tick: 58440 | 3 | 206
+    liquidityGross: 4871752927
+    liquidityNet:
+    898309075
+    
+  tick: 58500 | 3 | 207
+    liquidityGross: 4321901283
+    liquidityNet:
+    -4086580317
+    
+  tick: 58560 | 3 | 208
+    liquidityGross: 6244731265345
+    liquidityNet:
+    6244605095397
+    
+  tick: 58620 | 3 | 209
+    liquidityGross: 6238901940744
+    liquidityNet:
+    -6238735652510
+    
+  tick: 58680 | 3 | 210
+    liquidityGross: 49040821
+    liquidityNet:
+    -49040821
+    
+  tick: 58740 | 3 | 211
+    liquidityGross: 203878768
+    liquidityNet:
+    -203878768
+    
+  tick: 58860 | 3 | 213
+    liquidityGross: 10347463431
+    liquidityNet:
+    -10347463431
+    
+  tick: 59160 | 3 | 218
+    liquidityGross: 13613386637
+    liquidityNet:
+    -13613386637
+    
+  tick: 59220 | 3 | 219
+    liquidityGross: 21847644179
+    liquidityNet:
+    -21847644179
+    
+  tick: 59280 | 3 | 220
+    liquidityGross: 5871501224
+    liquidityNet:
+    -5850416536
+    
+  tick: 59340 | 3 | 221
+    liquidityGross: 50456761404
+    liquidityNet:
+    -50456761404
+    
+  tick: 59460 | 3 | 223
+    liquidityGross: 62026673278
+    liquidityNet:
+    -62016399292
+    
+  tick: 59520 | 3 | 224
+    liquidityGross: 19254728586
+    liquidityNet:
+    -19254728586
+    
+  tick: 59640 | 3 | 226
+    liquidityGross: 47625932372
+    liquidityNet:
+    -47518319710
+    
+  tick: 59700 | 3 | 227
+    liquidityGross: 2947335991
+    liquidityNet:
+    2947335991
+    
+  tick: 59820 | 3 | 229
+    liquidityGross: 14942281336
+    liquidityNet:
+    -14942281336
+    
+  tick: 59940 | 3 | 231
+    liquidityGross: 779694060
+    liquidityNet:
+    92295664
+    
+  tick: 60000 | 3 | 232
+    liquidityGross: 21601733
+    liquidityNet:
+    21601733
+    
+  tick: 60060 | 3 | 233
+    liquidityGross: 499090426
+    liquidityNet:
+    107117732
+    
+  tick: 60120 | 3 | 234
+    liquidityGross: 21601733
+    liquidityNet:
+    -21601733
+    
+  tick: 60240 | 3 | 236
+    liquidityGross: 143729349
+    liquidityNet:
+    -143729349
+    
+  tick: 60300 | 3 | 237
+    liquidityGross: 261054000
+    liquidityNet:
+    -261054000
+    
+  tick: 60420 | 3 | 239
+    liquidityGross: 15112515523
+    liquidityNet:
+    -15112515523
+    
+  tick: 60480 | 3 | 240
+    liquidityGross: 1055194474
+    liquidityNet:
+    1055194474
+    
+  tick: 60540 | 3 | 241
+    liquidityGross: 17652559639
+    liquidityNet:
+    -17652559639
+    
+  tick: 60660 | 3 | 243
+    liquidityGross: 2947335991
+    liquidityNet:
+    -2947335991
+    
+  tick: 60720 | 3 | 244
+    liquidityGross: 825820054
+    liquidityNet:
+    778313402
+    
+  tick: 60780 | 3 | 245
+    liquidityGross: 193
+    liquidityNet:
+    -193
+    
+  tick: 61080 | 3 | 250
+    liquidityGross: 2739465350535
+    liquidityNet:
+    -2726456179617
+    
+  tick: 61200 | 3 | 252
+    liquidityGross: 5163
+    liquidityNet:
+    -5163
+    
+  tick: 61260 | 3 | 253
+    liquidityGross: 111065266
+    liquidityNet:
+    -111065266
+    
+  tick: 61320 | 3 | 254
+    liquidityGross: 155766187
+    liquidityNet:
+    -155766187
+    
+  tick: 61380 | 3 | 255
+    liquidityGross: 5416754715
+    liquidityNet:
+    -5416754715
+    
+  tick: 61560 | 4 | 2
+    liquidityGross: 2639863538
+    liquidityNet:
+    -2639863538
+    
+  tick: 61620 | 4 | 3
+    liquidityGross: 1055194474
+    liquidityNet:
+    -1055194474
+    
+  tick: 61680 | 4 | 4
+    liquidityGross: 39042552545
+    liquidityNet:
+    -39042552545
+    
+  tick: 61740 | 4 | 5
+    liquidityGross: 28303616165
+    liquidityNet:
+    -28303616165
+    
+  tick: 61920 | 4 | 8
+    liquidityGross: 1311963
+    liquidityNet:
+    -1311963
+    
+  tick: 61980 | 4 | 9
+    liquidityGross: 373705105
+    liquidityNet:
+    -373705105
+    
+  tick: 62160 | 4 | 12
+    liquidityGross: 1197275986623
+    liquidityNet:
+    -1196355211821
+    
+  tick: 62460 | 4 | 17
+    liquidityGross: 5546227808
+    liquidityNet:
+    -5546227808
+    
+  tick: 62640 | 4 | 20
+    liquidityGross: 802066728
+    liquidityNet:
+    -802066728
+    
+  tick: 62940 | 4 | 25
+    liquidityGross: 10936364470
+    liquidityNet:
+    -10936364470
+    
+  tick: 63060 | 4 | 27
+    liquidityGross: 1415259748
+    liquidityNet:
+    -1415259748
+    
+  tick: 63120 | 4 | 28
+    liquidityGross: 19569840
+    liquidityNet:
+    19569840
+    
+  tick: 63180 | 4 | 29
+    liquidityGross: 5704961868
+    liquidityNet:
+    -5704961868
+    
+  tick: 63240 | 4 | 30
+    liquidityGross: 349458691
+    liquidityNet:
+    -349458691
+    
+  tick: 63360 | 4 | 32
+    liquidityGross: 51849221
+    liquidityNet:
+    -51849221
+    
+  tick: 63600 | 4 | 36
+    liquidityGross: 20005312
+    liquidityNet:
+    -20005312
+    
+  tick: 63720 | 4 | 38
+    liquidityGross: 101139616178
+    liquidityNet:
+    -101139616178
+    
+  tick: 63780 | 4 | 39
+    liquidityGross: 51190154669
+    liquidityNet:
+    -51190154669
+    
+  tick: 63960 | 4 | 42
+    liquidityGross: 303104079
+    liquidityNet:
+    -303104079
+    
+  tick: 64020 | 4 | 43
+    liquidityGross: 46045265634
+    liquidityNet:
+    -46045265634
+    
+  tick: 64080 | 4 | 44
+    liquidityGross: 2328962646
+    liquidityNet:
+    -2328962646
+    
+  tick: 64380 | 4 | 49
+    liquidityGross: 30495561045
+    liquidityNet:
+    -30495561045
+    
+  tick: 64620 | 4 | 53
+    liquidityGross: 1001328186
+    liquidityNet:
+    -1001328186
+    
+  tick: 64800 | 4 | 56
+    liquidityGross: 25460536085
+    liquidityNet:
+    -25355398181
+    
+  tick: 65160 | 4 | 62
+    liquidityGross: 92475435915
+    liquidityNet:
+    -92475435915
+    
+  tick: 65520 | 4 | 68
+    liquidityGross: 30404521289
+    liquidityNet:
+    -30404521289
+    
+  tick: 66120 | 4 | 78
+    liquidityGross: 91498412728
+    liquidityNet:
+    -91498412728
+    
+  tick: 66480 | 4 | 84
+    liquidityGross: 5175012
+    liquidityNet:
+    -5175012
+    
+  tick: 66540 | 4 | 85
+    liquidityGross: 3330858823
+    liquidityNet:
+    -3330858823
+    
+  tick: 66900 | 4 | 91
+    liquidityGross: 9718642
+    liquidityNet:
+    9718642
+    
+  tick: 67080 | 4 | 94
+    liquidityGross: 1419556027
+    liquidityNet:
+    -1419556027
+    
+  tick: 67500 | 4 | 101
+    liquidityGross: 5646908
+    liquidityNet:
+    -5646908
+    
+  tick: 68100 | 4 | 111
+    liquidityGross: 59359864
+    liquidityNet:
+    -59359864
+    
+  tick: 68340 | 4 | 115
+    liquidityGross: 26722882
+    liquidityNet:
+    -26722882
+    
+  tick: 68820 | 4 | 123
+    liquidityGross: 59926537
+    liquidityNet:
+    -59926537
+    
+  tick: 68880 | 4 | 124
+    liquidityGross: 103005857688
+    liquidityNet:
+    -103005857688
+    
+  tick: 69060 | 4 | 127
+    liquidityGross: 4040514353
+    liquidityNet:
+    -3907483523
+    
+  tick: 69120 | 4 | 128
+    liquidityGross: 52568952
+    liquidityNet:
+    -52568952
+    
+  tick: 70920 | 4 | 158
+    liquidityGross: 49062863
+    liquidityNet:
+    -49062863
+    
+  tick: 71100 | 4 | 161
+    liquidityGross: 14535724
+    liquidityNet:
+    -14535724
+    
+  tick: 72120 | 4 | 178
+    liquidityGross: 66515415
+    liquidityNet:
+    -66515415
+    
+  tick: 72660 | 4 | 187
+    liquidityGross: 332102921
+    liquidityNet:
+    -332102921
+    
+  tick: 73140 | 4 | 195
+    liquidityGross: 1383960
+    liquidityNet:
+    -1383960
+    
+  tick: 73800 | 4 | 206
+    liquidityGross: 9718642
+    liquidityNet:
+    -9718642
+    
+  tick: 74940 | 4 | 225
+    liquidityGross: 24974132
+    liquidityNet:
+    24974132
+    
+  tick: 75660 | 4 | 237
+    liquidityGross: 14850214887
+    liquidityNet:
+    -14850214887
+    
+  tick: 76020 | 4 | 243
+    liquidityGross: 7092156
+    liquidityNet:
+    -7092156
+    
+  tick: 76680 | 4 | 254
+    liquidityGross: 2352731075
+    liquidityNet:
+    -2352731075
+    
+  tick: 78660 | 5 | 31
+    liquidityGross: 24974132
+    liquidityNet:
+    -24974132
+    
+  tick: 79020 | 5 | 37
+    liquidityGross: 64515776
+    liquidityNet:
+    64515776
+    
+  tick: 80040 | 5 | 54
+    liquidityGross: 240008515
+    liquidityNet:
+    -240008515
+    
+  tick: 80700 | 5 | 65
+    liquidityGross: 64515776
+    liquidityNet:
+    -64515776
+    
+  tick: 92100 | 5 | 255
+    liquidityGross: 59996663
+    liquidityNet:
+    -59996663
+    
+  tick: 103080 | 6 | 182
+    liquidityGross: 22632065
+    liquidityNet:
+    -22632065
+    
+  tick: 231300 | 15 | 15
+    liquidityGross: 71596418
+    liquidityNet:
+    -71596418
+    
+  tick: 299340 | 19 | 125
+    liquidityGross: 24966780
+    liquidityNet:
+    -24966780
+    
+  total initialized  ticks: 238
+    -168678545
+
