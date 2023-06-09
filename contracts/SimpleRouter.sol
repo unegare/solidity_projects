@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.10;
 
-//import 'hardhat/console.sol';
+import 'hardhat/console.sol';
 
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
 //import '../v2-core/contracts/interfaces/IERC20.sol';
@@ -136,11 +136,15 @@ contract SimpleRouter is IUniswapV3SwapCallback{
       _token_to := calldataload(add(add(4, 0x60), 40))
     }
 
+    console.logInt(amount0Delta);
+    console.logInt(amount1Delta);
+
     (bool isExactInput, uint256 amountToPay) =
       amount0Delta > 0
         ? (_token_from < _token_to, uint256(amount0Delta))
         : (_token_to < _token_from, uint256(amount1Delta));
     if (isExactInput) {
+      console.log('allowance:', _token_from.allowance(_sender, address(this)));
       _token_from.safeTransferFrom(_sender, msg.sender, amountToPay);
     } else {
       revert('isExactInput false');

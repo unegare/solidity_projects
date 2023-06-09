@@ -5,5 +5,7 @@ describe('UniV3DataLoader', function() {
 
     const arr = await uniV3DataLoader.load('0x99ac8cA7087fA4A2A1FB6357269965A2014ABc35', 300, true);
     console.log(arr);
+    const gas = await uniV3DataLoader.estimateGas.load('0x99ac8cA7087fA4A2A1FB6357269965A2014ABc35', 300, true);
+    console.log(gas);
   });
 });
